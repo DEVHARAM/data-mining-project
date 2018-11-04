@@ -1,10 +1,10 @@
 # DataMining - Project (악플은 이제 그만)
 
-### File Inforamtion
+## File Inforamtion
 
 * comment_crawling.py : crawl comments on the web
 
-### Developers
+## Developers
 
 * 김하람
 * 정진우

@@ -1,6 +1,6 @@
 # DataMining - Project (악플은 이제 그만)
 
-## File Inforamtion
+## File Information
 
 * __comment_crawling.py__ : crawl comments on the web
 

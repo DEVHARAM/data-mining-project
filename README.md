@@ -2,12 +2,12 @@
 
 ## File Inforamtion
 
-* comment_crawling.py : crawl comments on the web
+* __comment_crawling.py__ : crawl comments on the web
 
 ## Developers
 
-* 김하람
-* 정진우
-* 배재훈
-* 홍지호
-* 김지환
+* __김하람__
+* __정진우__
+* __배재훈__
+* __홍지호__
+* __김지환__

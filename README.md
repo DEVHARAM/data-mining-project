@@ -4,6 +4,10 @@
 
 * __comment_crawling.py__ : crawl comments on the web
 
+## Reference
+
+* __MeCab__ : https://bitbucket.org/eunjeon/mecab-ko-dic
+
 ## Developers
 
 * __김하람__

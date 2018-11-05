@@ -6,6 +6,8 @@
 
 ## Reference
 
+* __konlpy install__ : https://konlpy-ko.readthedocs.io/ko/v0.4.3/install/
+* __konlpy package Manual__ : http://konlpy.org/en/v0.4.4/api/konlpy.tag/
 * __MeCab__ : https://bitbucket.org/eunjeon/mecab-ko-dic
 
 ## Developers

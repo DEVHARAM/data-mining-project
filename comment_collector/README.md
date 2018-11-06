@@ -4,6 +4,7 @@
 * PhantomJS - http://phantomjs.org/download.html
 * Selenium - included in .venv
 * bs4(Beautiful soap) - included in .venv
+* python 3.6.0 +
 
 ### Introduce
 * 네이버 기사 댓글 수집기입니다.
@@ -15,6 +16,6 @@
 2. requirements.txt 로 python package install
 
     ```pip install -r requirements.txt```
-
-3. collector.py를 실행
-4. 파일 생성시의 time으로 라벨이 붙어 파일 생성
+3. collector.py 의 load_driver를 해당 webdriver의 path로 수정
+4. collector.py를 실행
+5. 파일 생성시의 time으로 라벨이 붙어 파일 생성

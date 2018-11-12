@@ -12,7 +12,7 @@ fontprop = fm.FontProperties(fname=path, size=18)
 
 matplotlib.rc('font',family='HYsanB')
 sentences=[]
-f=open('test.txt',mode='rt', encoding='utf-8')
+f=open('output (1).txt',mode='rt', encoding='utf-8')
 while True:
     line=f.readline()
     if not line:break
@@ -22,14 +22,15 @@ while True:
 f.close()
 
 # train model
-model = Word2Vec(sentences, min_count=1)
+model = Word2Vec(sentences, size=100, window = 2, min_count=50, workers=4, iter=100, sg=1)
+
 
 # fit a 2d PCA model to the vectors
 X = model[model.wv.vocab]
 words=list(model.wv.vocab)
 print(words)
 
-print(model.most_similar(u'한국'))
+print(model.wv.most_similar('정말'))
 
 pca = PCA(n_components=2)
 result = pca.fit_transform(X) #벡터화 하는 부분

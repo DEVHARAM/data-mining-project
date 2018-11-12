@@ -13,7 +13,7 @@ INITIAL_URL = 'https://entertain.naver.com/ranking#type=hit_total&date='
 def main():
     print_initial_comment()
 
-    chrome_driver = load_driver('./chromedriver', 'chrome')
+    chrome_driver = load_driver('/usr/local/bin/chromedriver','chrome')
 
     for ii in range(0, 31):
         for list_num in range(1, 31):
@@ -53,7 +53,7 @@ def main():
 
 def save_comment_and_title_to_file(comments_list, title):
     TIME_NOW = int(time.time())
-    fp = open('./collected/' + str(TIME_NOW) + '.txt', 'w')
+    fp = open('./collected/' + str(TIME_NOW) + '.csv', 'w')
     fp.writelines('#' * 6 + 'TITLE : ' + title + '#' * 6 + '\r\n')
     for comment in comments_list:
         fp.writelines(comment.text + '\r\n')

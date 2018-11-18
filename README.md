@@ -2,7 +2,7 @@
 
 ## File Information
 
-* __comment_crawling.py__ : crawl comments on the web
+* __ffp/ffp.py__ : Make the comments a FFP Matrix
 
 ## Reference
 

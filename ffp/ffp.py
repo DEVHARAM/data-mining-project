@@ -38,8 +38,8 @@ def parsing(path,k):
 	return features	
 	
 def main():
-	features=parsing("./test.txt",2)
-	result=matrix("./test.txt",features,2)
+	features=parsing("./test.txt",3)
+	result=matrix("./test.txt",features,3)
 	print(features)
 	print(result)
 

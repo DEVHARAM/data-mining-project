@@ -50,10 +50,10 @@ with open("simple.txt","r") as In:
 
 # Load Comment
 with open("public/first.txt", "r") as f:
-	for line in iter(lambda: f.readline(), ''):
+	for line in iter(lambda :f.readline(), ''):
 		score = line[0]
 		line = line[1:].replace("\n", "")
-		if score ==' 2' or score == '0' :
+		if score == ' 2' or score == '0':
 			comment = {"score": score, "text": line}
 			comments.append(comment)
 
@@ -67,7 +67,7 @@ x_test = [d["text"] for d in comments[:100]]
 y_test = [d["score"] for d in comments[:100]]
 
 print("===========Navie Bayes===========")
-summary(multi_nbc,x_train,y_train,x_test,y_test)
+summary(multi_nbc, x_train, y_train, x_test, y_test)
 
 """
 knn = Pipeline([('vect', tfidf), ('knn', KNeighborsClassifier(n_neighbors=3))])

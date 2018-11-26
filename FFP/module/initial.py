@@ -25,14 +25,18 @@ BASE_CODE, CHOSUNG, JUNGSUNG = 44032, 588, 28
 # 초성 리스트. 00 ~ 18
 CHOSUNG_LIST = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ']
 #.*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*
+
+
 def initial(keyword):
-	 # 한글 여부 check 후 분리
-	 if re.match('.*[가-힣]+.*', keyword) is not None:
-		  print(keyword)
-		  char_code = ord(keyword) - BASE_CODE
-		  char1 = int(char_code / CHOSUNG)
-		  return (CHOSUNG_LIST[char1])
-	 else:
-		  return keyword
+	# 한글 여부 check 후 분리
+	if re.match('.*[가-힣]+.*', keyword) is not None:
+		print(keyword)
+		char_code = ord(keyword) - BASE_CODE
+		char1 = int(char_code / CHOSUNG)
+		return (CHOSUNG_LIST[char1])
+	else:
+		return keyword
+
+
 if __name__ == '__main__':
-	 1+1
+	1+1

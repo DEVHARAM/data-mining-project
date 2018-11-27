@@ -15,12 +15,12 @@ from time import time
 twitter = Twitter()
 
 
-def summary(model, x_train, y_train ,x_test, y_test):
+def summary(model, x_train, y_train , x_test, y_test):
 	start = time()
-	model.fit(x_train,y_train)
+	model.fit(x_train, y_train)
 	end = time()
 
-	print('Time: %.2fs' %(end-start))
+	print('Time: %.2fs' % (end-start))
 
 	y_pred = model.predict(x_train)
 	print("Train 정확도: {:.3f}".format(accuracy_score(y_train, y_pred)))
@@ -41,19 +41,19 @@ emoticons = ["!","@","#","$","%","^","&","*","(",")","-","=","_","+","~",",","."
 
 comments = []
 
-with open("simple.txt","r") as In:
-	with open("public/first.txt","w") as Out:
+with open("simple.txt", "r", encoding='UTF8') as In:
+	with open("public/first.txt", "w", encoding='UTF8') as Out:
 		read = In.read()
 		for emoticon in emoticons:
-			read=read.replace(emoticon,"")
+			read = read.replace(emoticon, "")
 		Out.write(read)
 
 # Load Comment
-with open("public/first.txt", "r") as f:
-	for line in iter(lambda :f.readline(), ''):
+with open("public/first.txt", "r", encoding='UTF8') as f:
+	for line in iter(lambda: f.readline(), ''):
 		score = line[0]
 		line = line[1:].replace("\n", "")
-		if score == ' 2' or score == '0':
+		if score == '2' or score == '0':
 			comment = {"score": score, "text": line}
 			comments.append(comment)
 

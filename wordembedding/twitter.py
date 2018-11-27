@@ -25,20 +25,20 @@ def tokenizer_morphs(doc):
 
 emoticons = ["!","@","#","$","%","^","&","*","(",")","-","=","_","+","~",",",".","?","/",">","<","\t"]
 
-comments=[]
+comments = []
 
-with open("simple.txt", "r") as In:
-	with open("public/first.txt", "w") as Out:
+with open("simple.txt", "r", encoding='UTF8') as In:
+	with open("public/first.txt", "w", encoding='UTF8') as Out:
 		read = In.read()
 		for emoticon in emoticons:
-			read=read.replace(emoticon,"")
+			read = read.replace(emoticon, "")
 		Out.write(read)
 
 # Load Comment
-with open("public/first.txt", "r") as f:
+with open("public/first.txt", "r", encoding='UTF8') as f:
 	for line in iter(lambda: f.readline(), ''):
 		score = line[0]
-		line = line[1:].replace("\n","")
+		line = line[1:].replace("\n", "")
 		if score == '2' or score == '0' :
 			comment = {"score": score, "text": line}
 			comments.append(comment)

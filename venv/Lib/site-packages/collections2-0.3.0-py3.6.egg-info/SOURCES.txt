@@ -1,0 +1,15 @@
+setup.cfg
+setup.py
+collections2/__init__.py
+collections2/__main__.py
+collections2/dicts.py
+collections2/sets.py
+collections2.egg-info/PKG-INFO
+collections2.egg-info/SOURCES.txt
+collections2.egg-info/dependency_links.txt
+collections2.egg-info/not-zip-safe
+collections2.egg-info/top_level.txt
+tests/__init__.py
+tests/main.py
+tests/test_OrderedDict.py
+tests/test_OrderedSet.py

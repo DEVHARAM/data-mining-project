@@ -66,6 +66,9 @@ x_train = [d["text"] for d in comments[100:]]
 x_test = [d["text"] for d in comments[:100]]
 y_test = [d["score"] for d in comments[:100]]
 
+for i in range(0, len(x_train)):
+	print(x_train[i])
+
 print("===========Navie Bayes===========")
 summary(multi_nbc, x_train, y_train, x_test, y_test)
 

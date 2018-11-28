@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: collections2
+Version: 0.3.0
+Summary: A set of improved data types inspired by the standard library's collections module.
+Home-page: https://github.com/therealfakemoot/BetterOrderedDict/
+Author: Nick Dumas
+Author-email: drakonik@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: set,dict,ordered,collections
+Platform: UNKNOWN

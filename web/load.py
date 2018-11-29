@@ -5,12 +5,14 @@ from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score,classification_report,confusion_matrix
 import pickle
 twitter=Twitter()
+import sys
+
 def tokenizer_morphs(doc):
      return twitter.morphs(doc)
 
-test=["진짜 예쁘다"]
+test=[sys.argv[1]]
 
 filename="save_model.sav"
 loaded_model = pickle.load(open(filename, 'rb'))
 pred=loaded_model.predict(test)
-print(pred)
+print(pred[0])

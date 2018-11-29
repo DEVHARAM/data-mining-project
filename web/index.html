@@ -2,27 +2,45 @@
 <head>
   <meta charset="utf-8" />
   <title>댓글 분류기</title>
-  <!--
-	<script type="text/javascript">
-		function result(review){
-			document.getElementById('result').innerHTML=review;
-		}
-	</script>
---!>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 </head>
 <body>
-	<form action="/result" method="post">
+	
 		<div>
 			<label for="review">댓글:</label>
 			<input type="text" name="review" id='review'/>
-			<button type="submit" value="Submit">"확인"</button>
+			<button type="button" onclick="onSubmit()" value="Submit">"확인"</button>
 			
 		</div>
 		<div id='result'>
 			
 		</div>
-	</form>
+	
 
 
 </body>
 </html>
+<script>
+function onSubmit(){
+	var value = $('#review').val();
+	var result;
+	document.getElementById('result').innerHTML="Loading..";
+	$.ajax({
+	url: "http://localhost:3000/result",
+	data: {review: value},
+	type: "POST",
+	dataType: "json"
+	}).done((json)=>{
+		result=json[0];
+		console.log(result)
+		if(result==0)
+			document.getElementById('result').innerHTML="선플";
+		else
+			document.getElementById('result').innerHTML="악플";
+	})
+	
+}
+</script>

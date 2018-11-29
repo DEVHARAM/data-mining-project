@@ -1,6 +1,8 @@
-var express=require('express');
-var app=express();
+const express=require('express');
+const app=express();
 const bodyParser=require('body-parser');
+const ps = require('python-shell')
+
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
@@ -8,14 +10,23 @@ app.get('/',function(req,res){
 	res.sendFile(__dirname+'/index.html');
 });
 app.post('/result',function(req,res){
-	
-	var spawn=require("child_process").spawn;
-	var process=spawn('python',["./save.py",req.body.review]);//save.py로 review값 보내기
+	var options = {
+		mode : 'text',
+		pythonPath: '',
+		pythonOptions: ['-u'],
+		scriptPath: '',
+		args: [req.body.review],
+	};
+	console.log(req.body.review);
+	ps.PythonShell.run('load.py', options, (err,results)=>{
 
-	process.stdout.on('data',function(data){ //save.py에서 print내용 가져와서 localhost로 send함
-		console.log(data)
-		res.send(data.toString());
-	})
-	
+			if(err) throw err;
+			console.log(results);
+			res.send(results);
+	});
 });
-app.listen(3000);
+app.listen(3000,(err)=>{
+		console.log("starting http://localhost:3000");
+		}
+		);
+

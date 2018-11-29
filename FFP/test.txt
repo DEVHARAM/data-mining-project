@@ -1,4 +1,4 @@
-﻿E:\PycharmProjects\data_mining\venv\Scripts\python.exe E:/PycharmProjects/data_mining/frequency.py
+E:\PycharmProjects\data_mining\venv\Scripts\python.exe E:/PycharmProjects/data_mining/frequency.py
 0변태가너무많ㄷ
 0정치인들우리나라치안에아무관심ㅇ없나보ㄷㅇ런사건들ㅇ터져도아무말ㅇ없ㄴ거보니그냥ㅈ들표밖에ㄴ관심ㅇ없어
 0남자입장에서봐도비상식적ㅇㄷ

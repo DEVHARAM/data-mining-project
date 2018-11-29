@@ -11,6 +11,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score,classification_report,confusion_matrix
 import nltk
 from time import time
+import pickle
 
 twitter= Twitter()
 
@@ -18,7 +19,10 @@ def summary(model,x_train,y_train,x_test,y_test):
 	 start = time()
 	 model.fit(x_train,y_train)
 	 end = time()
-
+		
+	 filename = 'save_model.sav'
+	pickle.dump(model, open(filename, 'wb'))
+    
 	 print('Time: %.2fs' %(end-start))
 	 
 	 y_pred = model.predict(x_train)

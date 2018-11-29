@@ -1,20 +1,16 @@
-import pickle
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import classification_report,confusion_matrix
-from sklearn.svm import SVC
-import sys
-sys.path.append('module')
-import numpy as np
-import ffp
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.pipeline import Pipeline
-from sklearn.naive_bayes import MultinomialNB #Navie Bayes
 from konlpy.tag import Twitter
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.naive_bayes import MultinomialNB #Navie Bayes
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import accuracy_score,classification_report,confusion_matrix
+import pickle
+twitter=Twitter()
+def tokenizer_morphs(doc):
+     return twitter.morphs(doc)
 
-test=[]
-test.append("진짜 예쁘다")
+test=["진짜 예쁘다"]
 
-model=pickle.load(open('save_model.sav','rb'))
-pred=model.predict(test)
+filename="save_model.sav"
+loaded_model = pickle.load(open(filename, 'rb'))
+pred=loaded_model.predict(test)
 print(pred)
-

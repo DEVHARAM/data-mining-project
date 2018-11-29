@@ -22,7 +22,7 @@
 
 > 세가지 결과 현재 Navie Bayes가 성능이 제일 좋았다.
 
-![Alt text](./image/tf-idf)
+![Alt text](./image/tf-idf.png)
 
 ## TODO
 

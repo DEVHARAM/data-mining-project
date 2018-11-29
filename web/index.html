@@ -1,24 +1,27 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>댓글 분류기</title>
+	<title>댓글 분류기</title>
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
 </head>
 <body>
-	
-		<div>
-			<label for="review">댓글:</label>
-			<input type="text" name="review" id='review'/>
-			<button type="button" onclick="onSubmit()" value="Submit">"확인"</button>
+	<div id="app">
+		<div class="header">
+		<h1>데마초 : 악플 분류기</h1>
+		</div>
+		<div class="section">
+						
+			<textarea name="review" id='review' rows="5" cols="50" placeholder="TYPE.."> </textarea>
+			<button type="button" onclick="onSubmit()" value="Submit">Submit</button>
 			
 		</div>
 		<div id='result'>
 			
-		</div>
-	
+	</div>
+</div>
 
 
 </body>
@@ -44,3 +47,28 @@ function onSubmit(){
 	
 }
 </script>
+<style>
+.header{
+	margin-top: 40px;
+}
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+</style>
+

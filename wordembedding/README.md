@@ -22,7 +22,11 @@
 
 > 세가지 결과 현재 Navie Bayes가 성능이 제일 좋았다.
 
+![Alt text](./image/tf-idf)
+
 ## TODO
 
 > cross validation을 사용하여 하이퍼파라미터를 찾아 테스트해봐야할 것 같다.
 > doc2vec 를 이용하여 위에 Model과의 차이를 확인해봐야할 것 같다.
+
+

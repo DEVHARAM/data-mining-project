@@ -10,10 +10,9 @@ app.get('/',function(req,res){
 app.post('/result',function(req,res){
 	
 	var spawn=require("child_process").spawn;
-	var process=spawn('python',["./save.py",
-	req.body.review]);
+	var process=spawn('python',["./save.py",req.body.review]);//save.py로 review값 보내기
 
-	process.stdout.on('data',function(data){
+	process.stdout.on('data',function(data){ //save.py에서 print내용 가져와서 localhost로 send함
 		console.log(data)
 		res.send(data.toString());
 	})

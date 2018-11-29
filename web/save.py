@@ -26,7 +26,7 @@ def summary(model,x_train,y_train):
     pickle.dump(model,open(filename,'wb'))
     '''
     test_data=[]
-    test_data.append(sys.argv[1]) 
+    test_data.append(sys.argv[1])//req.body.review값 가져오기 
 
     result=model.predict(test_data)    
     if(result[0]==0):

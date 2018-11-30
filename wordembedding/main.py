@@ -10,6 +10,7 @@ from sklearn.linear_model import SGDClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score,classification_report,confusion_matrix
+from sklearn.feature_extraction.text import TfidfVectorizer, HashingVectorizer, CountVectorizer
 import nltk
 from time import time
 import pickle
@@ -45,6 +46,55 @@ def summary(model,x_train,y_train,x_test,y_test,name):
 def tokenizer_morphs(doc):
 	 return twitter.morphs(doc)
 
+def tokenizer_twitter_noun(doc):
+    return twitter.nouns(doc)
+
+def tokenizer_twitter_pos(doc):
+    return twitter.pos(doc, norm=True, stem=True)
+
+def report(x_train,y_train,x_test,y_test,token,name):
+	
+	countV = CountVectorizer(tokenizer=token)
+	tfidf = TfidfVectorizer(tokenizer=token)
+
+
+	print("===========Navie Bayes===========")
+	multi_nbc = Pipeline([('vect', countV), ('nbc', MultinomialNB())])
+	summary(multi_nbc,x_train,y_train,x_test,y_test,"nav_count_"+name)
+
+	multi_nbc = Pipeline([('vect', tfidf), ('nbc', MultinomialNB())])
+	summary(multi_nbc,x_train,y_train,x_test,y_test,"nav_tfidf_"+name)
+
+	print("=============SGD=================")
+	sgd_clf = Pipeline([('vect', countV), ('sgd', SGDClassifier(loss='hinge', penalty='l2', alpha=1e-3, random_state=42))])
+	summary(sgd_clf,x_train,y_train,x_test,y_test,"sgd_count_"+name)
+
+	sgd_clf = Pipeline([('vect', tfidf), ('sgd', SGDClassifier(loss='hinge', penalty='l2', alpha=1e-3, random_state=42))])
+	summary(sgd_clf,x_train,y_train,x_test,y_test,"sgd_tfidf_"+name)
+
+	print("===========KNN===========")
+	knn = Pipeline([('vect', countV), ('knn', KNeighborsClassifier(n_neighbors=5))])
+	summary(knn,x_train,y_train,x_test,y_test,"knn_count_"+name)
+
+	knn = Pipeline([('vect', tfidf), ('knn', KNeighborsClassifier(n_neighbors=5))])
+	summary(knn,x_train,y_train,x_test,y_test,"knn_tfidf_"+name)
+
+	"""
+	print("===========SVM===========")
+	svm = Pipeline([('vect', countV), ('svc',svm.SVC(gamma="auto"))])
+	summary(svm,x_train,y_train,x_test,y_test,"svm")
+
+	svm = Pipeline([('vect', tfidf), ('svc',svm.SVC(gamma="auto"))])
+	summary(svm,x_train,y_train,x_test,y_test,"svm")
+	"""
+
+	print("=======Random Forest=====")
+	rf = Pipeline([('vect', countV), ('rf',RandomForestClassifier(n_estimators=100, oob_score=True, random_state=123456))])
+	summary(rf,x_train,y_train,x_test,y_test,"rf_count_"+name)
+
+	rf = Pipeline([('vect', tfidf), ('rf',RandomForestClassifier(n_estimators=100, oob_score=True, random_state=123456))])
+	summary(rf,x_train,y_train,x_test,y_test,"rf_tfidf_"+name)
+
 emoticons = ["!","@","#","$","%","^","&","*","(",")","-","=","_","+","~",",",".","?","/",">","<","\t"]
 
 comments=[]
@@ -64,9 +114,9 @@ with open("public/first.txt","r") as f:
 		  if score=='2' or score=='0' :
 				 comment={"score": score,"text": line}
 				 comments.append(comment)
-
+	
+countV = CountVectorizer(tokenizer=tokenizer_morphs)
 tfidf = TfidfVectorizer(tokenizer=tokenizer_morphs)
-
 
 
 y_train = [ d["score"] for d in comments[100:]]
@@ -74,20 +124,7 @@ x_train = [ d["text"] for d in comments[100:]]
 x_test = [ d["text"] for d in comments[:100]]
 y_test = [ d["score"] for d in comments[:100]]
 
-obj=[]
+report(x_train,y_train,x_test,y_test,tokenizer_morphs,"morphs")
+report(x_train,y_train,x_test,y_test,tokenizer_twitter_noun,"noun")
+report(x_train,y_train,x_test,y_test,tokenizer_twitter_pos,"pos")
 
-print("===========Navie Bayes===========")
-multi_nbc = Pipeline([('vect', tfidf), ('nbc', MultinomialNB())])
-obj.append(summary(multi_nbc,x_train,y_train,x_test,y_test,"nav"))
-
-print("===========KNN===========")
-knn = Pipeline([('vect', tfidf), ('knn', KNeighborsClassifier(n_neighbors=5))])
-obj.append(summary(knn,x_train,y_train,x_test,y_test,"knn"))
-
-print("===========SVM===========")
-svm = Pipeline([('vect', tfidf), ('svc',svm.SVC(gamma="auto"))])
-obj.append(summary(svm,x_train,y_train,x_test,y_test,"svm"))
-
-print("=======Random Forest=====")
-rf = Pipeline([('vect', tfidf), ('rf',RandomForestClassifier(n_estimators=100, oob_score=True, random_state=123456))])
-obj.append(summary(rf,x_train,y_train,x_test,y_test,"rf"))

@@ -37,7 +37,12 @@ def summary(x_train,y_train,x_test,y_test,name):
 	 
 def tokenizer_morphs(doc):
 	 return twitter.morphs(doc)
+	 
+def tokenizer_twitter_noun(doc):
+    return twitter.nouns(doc)
 
+def tokenizer_twitter_pos(doc):
+    return twitter.pos(doc, norm=True, stem=True)
 
 comments=[]
 
@@ -61,42 +66,72 @@ y_test = [ d["score"] for d in comments[:100]]
 obj=[]
 
 print("===========Navie Bayes===========")
-obj.append(summary(x_train,y_train,x_test,y_test,"nav"))
+obj.append(summary(x_train,y_train,x_test,y_test,"nav_count_morphs"))
+obj.append(summary(x_train,y_train,x_test,y_test,"nav_count_noun"))
+obj.append(summary(x_train,y_train,x_test,y_test,"nav_count_pos"))
+
+obj.append(summary(x_train,y_train,x_test,y_test,"nav_tfidf_morphs"))
+obj.append(summary(x_train,y_train,x_test,y_test,"nav_tfidf_noun"))
+obj.append(summary(x_train,y_train,x_test,y_test,"nav_tfidf_pos"))
 
 print("===========KNN===========")
-obj.append(summary(x_train,y_train,x_test,y_test,"knn"))
+obj.append(summary(x_train,y_train,x_test,y_test,"knn_count_morphs"))
+obj.append(summary(x_train,y_train,x_test,y_test,"knn_count_noun"))
+obj.append(summary(x_train,y_train,x_test,y_test,"knn_count_pos"))
 
+obj.append(summary(x_train,y_train,x_test,y_test,"knn_tfidf_morphs"))
+obj.append(summary(x_train,y_train,x_test,y_test,"knn_tfidf_noun"))
+obj.append(summary(x_train,y_train,x_test,y_test,"knn_tfidf_pos"))
+"""
 print("===========SVM===========")
-obj.append(summary(x_train,y_train,x_test,y_test,"svm"))
+obj.append(summary(x_train,y_train,x_test,y_test,"svm_count_morphs"))
+obj.append(summary(x_train,y_train,x_test,y_test,"svm_count_noun"))
+obj.append(summary(x_train,y_train,x_test,y_test,"svm_count_pos"))
 
+obj.append(summary(x_train,y_train,x_test,y_test,"svm_tfidf_morphs"))
+obj.append(summary(x_train,y_train,x_test,y_test,"svm_tfidf_noun"))
+obj.append(summary(x_train,y_train,x_test,y_test,"svm_tfidf_pos"))
+"""
 print("=======Random Forest=====")
-obj.append(summary(x_train,y_train,x_test,y_test,"rf"))
+obj.append(summary(x_train,y_train,x_test,y_test,"rf_count_morphs"))
+obj.append(summary(x_train,y_train,x_test,y_test,"rf_count_noun"))
+obj.append(summary(x_train,y_train,x_test,y_test,"rf_count_pos"))
+
+obj.append(summary(x_train,y_train,x_test,y_test,"rf_tfidf_morphs"))
+obj.append(summary(x_train,y_train,x_test,y_test,"rf_tfidf_noun"))
+obj.append(summary(x_train,y_train,x_test,y_test,"rf_tfidf_pos"))
+
+print("=============SGD=================")
+obj.append(summary(x_train,y_train,x_test,y_test,"sgd_count_morphs"))
+obj.append(summary(x_train,y_train,x_test,y_test,"sgd_count_noun"))
+obj.append(summary(x_train,y_train,x_test,y_test,"sgd_count_pos"))
+
+obj.append(summary(x_train,y_train,x_test,y_test,"sgd_tfidf_morphs"))
+obj.append(summary(x_train,y_train,x_test,y_test,"sgd_tfidf_noun"))
+obj.append(summary(x_train,y_train,x_test,y_test,"sgd_tfidf_pos"))
 
 # create plot
-fig, ax = plt.subplots()
-index = np.arange(len(obj))
-bar_width = 0.35
-opacity = 0.8
-
+plt.figure(figsize=(30, 30))
 train=[value['Train'] for value in obj]
 test=[value['Test'] for value in obj]
 name=[value['Name'] for value in obj]
 
-rects1 = plt.bar(index, train, bar_width,
-                 alpha=opacity,
-                 color='b',
-                 label='train')
- 
-rects2 = plt.bar(index + bar_width, test, bar_width,
-                 alpha=opacity,
-                 color='g',
-                 label='test')
- 
+nav=[value['Test'] for value in obj if value["Name"].split("_")[0] =="nav"]
+knn=[value['Test'] for value in obj if value["Name"].split("_")[0] =="knn"]
+rf=[value['Test'] for value in obj if value["Name"].split("_")[0] == "rf"]
+sgd=[value['Test'] for value in obj if value["Name"].split("_")[0] == "sgd"]
+
+bottom = ["count_morphs","count_noun","count_pos","tfidf_morphs","tfidf_noun","tfidf_pos"]
+
+plt.plot(bottom,nav,'--s',label="nav")
+plt.plot(bottom,knn,'--s',label="knn")
+plt.plot(bottom,rf,'--s',label="rf")
+plt.plot(bottom,sgd,'--s',label="sgd")
+
 plt.xlabel('Model')
 plt.ylabel('Accuracy')
-plt.title('TF-IDF')
-plt.xticks(index + bar_width/2, name)
+
+plt.title('Classifier Comment')
 plt.legend()
 plt.grid() 
-plt.tight_layout()
 plt.show()

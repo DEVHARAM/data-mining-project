@@ -24,6 +24,7 @@
 
 ![Alt text](./image/total_accuracy)
 
+
 ## TODO
 
 > cross validation을 사용하여 하이퍼파라미터를 찾아 테스트해봐야할 것 같다.

@@ -17,10 +17,11 @@
 ## Model
 
 * __Navie Bayes__
-* __SVM__
+* __SGM__
 * __KNN__
+* __Random Forest__
 
-> 세가지 결과 현재 Navie Bayes가 성능이 제일 좋았다.
+> 네가지 결과 현재 Navie Bayes가 성능이 제일 좋았다.
 
 ![Alt text](./image/total_accuracy.png)
 

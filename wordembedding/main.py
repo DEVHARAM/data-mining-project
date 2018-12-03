@@ -124,6 +124,8 @@ x_train = [ d["text"] for d in comments[100:]]
 x_test = [ d["text"] for d in comments[:100]]
 y_test = [ d["score"] for d in comments[:100]]
 
+print(len(y_train))
+
 report(x_train,y_train,x_test,y_test,tokenizer_morphs,"morphs")
 report(x_train,y_train,x_test,y_test,tokenizer_twitter_noun,"noun")
 report(x_train,y_train,x_test,y_test,tokenizer_twitter_pos,"pos")

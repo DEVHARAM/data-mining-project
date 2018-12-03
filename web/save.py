@@ -62,10 +62,10 @@ tfidf = TfidfVectorizer(tokenizer=tokenizer_morphs)
 
 multi_nbc = Pipeline([('vect', tfidf), ('nbc', MultinomialNB())])
 
-y_train = [ d["score"] for d in comments[100:]]
-x_train = [ d["text"] for d in comments[100:]]
-x_test = [ d["text"] for d in comments[:100]]
-y_test = [ d["score"] for d in comments[:100]]
+y_train = [ d["score"] for d in comments[200:]]
+x_train = [ d["text"] for d in comments[200:]]
+x_test = [ d["text"] for d in comments[:200]]
+y_test = [ d["score"] for d in comments[:200]]
 
 print("===========Navie Bayes===========")
 summary(multi_nbc,x_train,y_train,x_test,y_test)

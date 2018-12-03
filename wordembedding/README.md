@@ -9,17 +9,20 @@
 > 분리된 형태소 별로 TF-IDF값을 구하여서 값이 큰 값은 데이터에서 제외하였다.
 >
 
+## Module
+* make_csv() : element가 [word, TF-IDF value, word frequency] 로 이루어진 csv파일을 만든다.
+* make_txt(threshold) : 만들어진 TF-IDF.csv의 element를 이용하여 simple.txt 의 데이터 중 TF-IDF값이 높은 word를 threshold만큼 삭제한다.
+
+> train과 test 데이터 모두 같은 threshold로 전처리 해준다.
+
 ## Model
 
 * Doc2vec
 
-> 네가지 결과 현재 Navie Bayes가 성능이 제일 좋았다.
-
-![Alt text](./image/total_accuracy.png)
 
 
 ## TODO
 
-> threshold 별로 성능비교.
+> threshold 에 따른 성능비교.
 
 

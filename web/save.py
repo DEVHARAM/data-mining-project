@@ -2,7 +2,7 @@ from konlpy.tag import Twitter
 import matplotlib as mpl
 import matplotlib.pylab as plt
 #import matplotlib.font_manager as fm
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer,CountVectorizer
 from sklearn.naive_bayes import MultinomialNB #Navie Bayes
 from sklearn.neighbors import KNeighborsClassifier #KNN
 from sklearn import svm #SVM
@@ -58,17 +58,17 @@ with open("public/first.txt","r") as f:
 				 comment={"score": score,"text": line}
 				 comments.append(comment)
 
-tfidf = TfidfVectorizer(tokenizer=tokenizer_morphs)
+countV = CountVectorizer(tokenizer=tokenizer_morphs)
 
-multi_nbc = Pipeline([('vect', tfidf), ('nbc', MultinomialNB())])
+sgd_clf = Pipeline([('vect', countV), ('sgd', SGDClassifier(loss='hinge', penalty='l2', alpha=1e-3, random_state=42))])
 
-y_train = [ d["score"] for d in comments[200:]]
-x_train = [ d["text"] for d in comments[200:]]
+y_train = [ d["score"] for d in comments[:]]
+x_train = [ d["text"] for d in comments[:]]
 x_test = [ d["text"] for d in comments[:200]]
 y_test = [ d["score"] for d in comments[:200]]
 
-print("===========Navie Bayes===========")
-summary(multi_nbc,x_train,y_train,x_test,y_test)
+print("===========SGD===========")
+summary(sgd_clf,x_train,y_train,x_test,y_test)
 
 """
 knn = Pipeline([('vect', tfidf), ('knn', KNeighborsClassifier(n_neighbors=3))])

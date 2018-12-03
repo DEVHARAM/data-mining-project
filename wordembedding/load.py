@@ -58,10 +58,10 @@ with open("public/first.txt","r") as f:
 tfidf = TfidfVectorizer(tokenizer=tokenizer_morphs)
 
 
-y_train = [ d["score"] for d in comments[100:]]
-x_train = [ d["text"] for d in comments[100:]]
-x_test = [ d["text"] for d in comments[:100]]
-y_test = [ d["score"] for d in comments[:100]]
+y_train = [ d["score"] for d in comments[200:]]
+x_train = [ d["text"] for d in comments[200:]]
+x_test = [ d["text"] for d in comments[:200]]
+y_test = [ d["score"] for d in comments[:200]]
 
 obj=[]
 

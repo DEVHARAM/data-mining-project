@@ -99,7 +99,7 @@ emoticons = ["!","@","#","$","%","^","&","*","(",")","-","=","_","+","~",",","."
 
 comments=[]
 
-with open("simple.txt","r") as In:
+with open("result.txt","r") as In:
 	 with open("public/first.txt","w") as Out:
 		  read = In.read()
 		  for emoticon in emoticons:
@@ -119,10 +119,10 @@ countV = CountVectorizer(tokenizer=tokenizer_morphs)
 tfidf = TfidfVectorizer(tokenizer=tokenizer_morphs)
 
 
-y_train = [ d["score"] for d in comments[100:]]
-x_train = [ d["text"] for d in comments[100:]]
-x_test = [ d["text"] for d in comments[:100]]
-y_test = [ d["score"] for d in comments[:100]]
+y_train = [ d["score"] for d in comments[200:]]
+x_train = [ d["text"] for d in comments[200:]]
+x_test = [ d["text"] for d in comments[:200]]
+y_test = [ d["score"] for d in comments[:200]]
 
 print(len(y_train))
 

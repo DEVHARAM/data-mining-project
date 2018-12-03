@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a20fe6b-c3e2-47a4-81ad-0eee3ef794b0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Sentiment/Sentiment.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sentiment/rhino.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wordembedding/tfidf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordembedding/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/wordembedding/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordembedding/public/first.txt" beforeDir="false" afterPath="$PROJECT_DIR$/wordembedding/public/first.txt" afterDir="false" />
-    </list>
+    <list default="true" id="5a20fe6b-c3e2-47a4-81ad-0eee3ef794b0" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,23 +50,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Sentiment/rhino.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#12#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wordembedding/tfidf.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="492">
-              <caret line="93" column="24" lean-forward="true" selection-start-line="93" selection-start-column="24" selection-end-line="93" selection-end-column="24" />
+            <state relative-caret-position="245">
+              <caret line="96" column="51" lean-forward="true" selection-start-line="96" selection-start-column="51" selection-end-line="96" selection-end-column="51" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
                 <marker date="1543823637968" expanded="true" signature="2221:2226" ph="..." />
@@ -185,17 +167,6 @@
             <path>
               <item name="data-mining-project" type="b2602c69:ProjectViewProjectNode" />
               <item name="data-mining-project" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-mining-project" type="462c0819:PsiDirectoryNode" />
-              <item name="Sentiment" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="data-mining-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="data-mining-project" type="462c0819:PsiDirectoryNode" />
-              <item name="Sentiment" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="data-mining-project" type="b2602c69:ProjectViewProjectNode" />
@@ -344,7 +315,6 @@
           <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1543649766266" expanded="true" signature="69:74" ph="..." />
           </folding>
         </state>
       </provider>
@@ -425,8 +395,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wordembedding/tfidf.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="93" column="24" lean-forward="true" selection-start-line="93" selection-start-column="24" selection-end-line="93" selection-end-column="24" />
+        <state relative-caret-position="245">
+          <caret line="96" column="51" lean-forward="true" selection-start-line="96" selection-start-column="51" selection-end-line="96" selection-end-column="51" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
             <marker date="1543823637968" expanded="true" signature="2221:2226" ph="..." />

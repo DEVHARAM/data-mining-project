@@ -13,12 +13,11 @@ def spell(sen):
         }
     headers={'User-Agent':'Mozilla/5.0'}
 
-
     response=requests.get(url,params=params,headers=headers).text
     response=response.replace(params['_callback']+'(','')
     response=response.replace(');','')
-    response=json.loads(response)
-    
+    response=json.loads(response,strict=False)
+     
     result_text=response['message']['result']['html']
     result_text=re.sub(r'<\/?.*?>','',result_text)
     return result_text
@@ -27,6 +26,8 @@ if __name__=='__main__':
     fw=open('result.txt','w')
     lines=f.readlines()
     for line in lines:
+        print(line)
         transfer=spell(line)
-        fw.write(transfer)
+        print(transfer)
+        fw.write(transfer+'\n')
 

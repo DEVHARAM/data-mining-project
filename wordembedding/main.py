@@ -4,11 +4,11 @@ from sklearn.neighbors import KNeighborsClassifier #KNN
 from sklearn.linear_model import SGDClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.pipeline import Pipeline
-from sklearn.metrics import accuracy_score,classification_report,confusion_matrix
-from sklearn.feature_extraction.text import TfidfVectorizer, HashingVectorizer,CountVectorizer
-import nltk
+from sklearn.metrics import accuracy_score,classification_report, confusion_matrix
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from time import time
 import pickle
+import os
 
 twitter= Twitter()
 
@@ -95,15 +95,16 @@ def report(x_train, y_train, x_test, y_test, token, name):
 emoticons = ["!","@","#","$","%","^","&","*","(",")","-","=","_","+","~",",",".","?","/",">","<","\t"]
 comments = []
 
-with open("result.txt", "r") as In:
-	with open("public/first.txt", "w") as Out:
+prepro = os.path.abspath(__file__ + "/../../") + "/prepro/second.txt"
+with open(prepro, "r", encoding='utf8') as In:
+	with open("public/third.txt", "w", encoding='utf8') as Out:
 		read = In.read()
 		for emoticon in emoticons:
-			read=read.replace(emoticon,"")
+			read = read.replace(emoticon,"")
 		Out.write(read)
 
 ## Load Comment
-with open("public/first.txt", "r") as f:
+with open("public/third.txt", "r", encoding='utf8') as f:
 	for line in iter(lambda: f.readline(), ''):
 		score = line[0]
 		line = line[1:].replace("\n", "")

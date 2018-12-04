@@ -10,7 +10,7 @@ from time import time
 import pickle
 import os
 
-twitter= Twitter()
+twitter = Twitter()
 
 
 def summary(model, x_train, y_train, x_test, y_test, name):
@@ -95,7 +95,7 @@ def report(x_train, y_train, x_test, y_test, token, name):
 emoticons = ["!","@","#","$","%","^","&","*","(",")","-","=","_","+","~",",",".","?","/",">","<","\t"]
 comments = []
 
-prepro = os.path.abspath(__file__ + "/../../") + "/prepro/second.txt"
+prepro = os.path.abspath(__file__ + "/../../") + "/prepro/result.txt"
 with open(prepro, "r", encoding='utf8') as In:
 	with open("public/third.txt", "w", encoding='utf8') as Out:
 		read = In.read()
@@ -126,4 +126,3 @@ print(len(y_train))
 report(x_train, y_train, x_test, y_test, tokenizer_morphs, "morphs")
 report(x_train, y_train, x_test, y_test, tokenizer_twitter_noun, "noun")
 report(x_train, y_train, x_test, y_test, tokenizer_twitter_pos, "pos")
-

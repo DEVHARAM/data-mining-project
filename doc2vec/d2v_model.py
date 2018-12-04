@@ -4,8 +4,8 @@ from konlpy.tag import Twitter
 import multiprocessing
 from gensim.models import Doc2Vec
 from time import time
-from sklearn.linear_model import LogisticRegression
 import pickle
+import os
 
 cores = multiprocessing.cpu_count()
 twitter = Twitter()
@@ -19,28 +19,31 @@ emoticons = ["!","@","#","$","%","^","&","*","(",")","-","=","_","+","~",",","."
 
 comments = []
 
-with open("simple.txt", "r", encoding='UTF8') as In:
-    with open("public/first.txt", "w", encoding='UTF8') as Out:
+prepro = os.path.abspath(__file__ + "/../../") + "/prepro/second.txt"
+with open(prepro, "r", encoding='UTF8') as In:
+    with open("public/third.txt", "w", encoding='UTF8') as Out:
         read = In.read()
         for emoticon in emoticons:
             read = read.replace(emoticon, "")
         Out.write(read)
 # Load Comment
-with open("public/first.txt", "r", encoding='UTF8') as f:
+with open("public/third.txt", "r", encoding='UTF8') as f:
     for line in iter(lambda: f.readline(), ''):
         score = line[0]
         line = line[1:].replace("\n", "")
         if score == '2' or score == '0':
+            if score == '2':
+                score = '1'
             comment = {"score": score, "text": line}
             comments.append(comment)
 
 df_train = pd.DataFrame({
-    "score": [d["score"] for d in comments[200:]],
-    "text": [d["text"] for d in comments[200:]],
+    "score": [d["score"] for d in comments[150:]],
+    "text": [d["text"] for d in comments[150:]],
 })
 df_test = pd.DataFrame({
-    "X_test": [d["text"] for d in comments[:200]],
-    "y_test": [d["score"] for d in comments[:200]],
+    "X_test": [d["text"] for d in comments[:150]],
+    "y_test": [d["score"] for d in comments[:150]],
 })
 df_train['token_review'] = df_train['text'].apply(tokenizer_morphs)
 df_test['X_test_tokkended'] = df_test['X_test'].apply(tokenizer_morphs)
@@ -58,17 +61,12 @@ tagged_test_docs = [TaggedDocument(d, c)
 print(len(tagged_test_docs), len(tagged_train_docs))
 
 doc_vectorizer = Doc2Vec(
-    dm=0,            # PV-DBOW / default 1
-    dbow_words=1,    # w2v simultaneous with DBOW d2v / default 0
     window=8,        # distance between the predicted word and context words
-    vector_size=40,  # vector size
+    vector_size=20,  # vector size
     alpha=0.025,     # learning-rate
-    seed=1234,
-    min_count=20,    # ignore with freq lower
-    min_alpha=0.025, # min learning-rate
+    min_count=1,    # ignore with freq lower
+    min_alpha=0.00025, # min learning-rate
     workers=cores,   # multi cpu
-    hs=1,            # hierarchical softmax / default 0
-    negative=10,     # negative sampling / default 5
 )
 
 doc_vectorizer.build_vocab(tagged_train_docs)

@@ -28,34 +28,32 @@ X_test = [doc_vectorizer.infer_vector(doc.words) for doc in tagged_test_docs]
 y_test = [doc.tags for doc in tagged_test_docs]
 print(len(X_train), len(y_train))
 
-#####################################################################################################
-## CNN
-
+# CNN
 y_train_np = np.asarray(y_train, dtype=int)
 y_test_np = np.asarray(y_test, dtype=int)
 X_train_np = np.asarray(X_train)
 X_test_np = np.asarray(X_test)
 
-y_train_np = np.eye(3)[y_train_np.reshape(-1)]
-y_test_np = np.eye(3)[y_test_np.reshape(-1)]
+y_train_np = np.eye(2)[y_train_np.reshape(-1)]
+y_test_np = np.eye(2)[y_test_np.reshape(-1)]
 
 # # Xavier_Initializer
 xavier_init = tf.contrib.layers.xavier_initializer()
 
 # hyper parameters
 learning_rate = 0.01
-training_epochs = 50
+training_epochs = 30
 batch_size = 10
 keep_prob = 0.7
 
 # Input Layer
-X = tf.placeholder(tf.float32, [None, 40])
-Y = tf.placeholder(tf.float32, [None, 3])
+X = tf.placeholder(tf.float32, [None, 10])
+Y = tf.placeholder(tf.float32, [None, 2])
 train_mode = tf.placeholder(tf.bool, name='train_mode')
 
 # Layer output size
-hidden_output_size = 40
-final_ouput_size = 3
+hidden_output_size = 10
+final_output_size = 2
 
 bn_params = {
     'is_training': train_mode,
@@ -83,7 +81,7 @@ with arg_scope(
     h4 = fully_connected(dropout3, hidden_output_size, scope='h4')
     dropout4 = dropout(h4, keep_prob, is_training=train_mode)
 
-    hypothesis = fully_connected(dropout4, final_ouput_size, activation_fn=None, scope='hypothesis')
+    hypothesis = fully_connected(dropout4, final_output_size, activation_fn=None, scope='hypothesis')
 
     # define Cost/Loss and Optimizer
     cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=hypothesis, labels=Y))

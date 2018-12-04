@@ -103,5 +103,5 @@ def make_txt(threshold):
 
 
 make_csv()
-make_txt(100)
+make_txt(30)
 

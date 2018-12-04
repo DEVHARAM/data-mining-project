@@ -41,7 +41,7 @@ def tokenizer_twitter_pos(doc):
 
 comments = []
 ## Load Comment
-with open("public/third.txt", "r") as f:
+with open("public/third.txt", "r", encoding='utf8') as f:
 	for line in iter(lambda: f.readline(), ''):
 		score = line[0]
 		line = line[1:].replace("\n", "")

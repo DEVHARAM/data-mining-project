@@ -25,15 +25,15 @@ X_train = [doc_vectorizer.infer_vector(doc.words) for doc in tagged_train_docs]
 y_train = [doc.tags for doc in tagged_train_docs]
 X_test = [doc_vectorizer.infer_vector(doc.words) for doc in tagged_test_docs]
 y_test = [doc.tags for doc in tagged_test_docs]
-print(len(X_train), len(y_train))
+print(len(X_test), len(X_train))
 ####################################################################################################
 y_train_np = np.asarray(y_train, dtype=int)
 y_test_np = np.asarray(y_test, dtype=int)
 X_train_np = np.asarray(X_train)
 X_test_np = np.asarray(X_test)
 
-y_train_np = np.eye(3)[y_train_np.reshape(-1)]
-y_test_np = np.eye(3)[y_test_np.reshape(-1)]
+y_train_np = np.eye(2)[y_train_np.reshape(-1)]
+y_test_np = np.eye(2)[y_test_np.reshape(-1)]
 
 # # Xavier_Initializer
 xavier_init = tf.contrib.layers.xavier_initializer()
@@ -45,17 +45,17 @@ tf.reset_default_graph()
 # hyper Parameter
 learning_rate = 0.001
 training_epochs = 50
-batch_size = 20
+batch_size = 10
 
 # input layer
-X = tf.placeholder(tf.float32, [None, 40])
-Y = tf.placeholder(tf.float32, [None, 3])
+X = tf.placeholder(tf.float32, [None, 20])
+Y = tf.placeholder(tf.float32, [None, 2])
 
 # dropout
 keep_prob = tf.placeholder(tf.float32)
 
 # Hidden layers and Output layer
-W1 = tf.get_variable("W1", shape=[40, 32], initializer=xavier_init)
+W1 = tf.get_variable("W1", shape=[20, 32], initializer=xavier_init)
 b1 = tf.Variable(tf.random_normal([32]))
 L1 = tf.nn.relu(tf.matmul(X, W1)+b1)
 dropout1 = tf.nn.dropout(L1, keep_prob=keep_prob)
@@ -75,8 +75,8 @@ b4 = tf.Variable(tf.random_normal([32]))
 L4 = tf.nn.relu(tf.matmul(dropout3, W4)+b4)
 dropout4 = tf.nn.dropout(L4, keep_prob=keep_prob)
 
-W5 = tf.get_variable("W5", shape=[32, 3], initializer=xavier_init)
-b5 = tf.Variable(tf.random_normal([3]))
+W5 = tf.get_variable("W5", shape=[32, 2], initializer=xavier_init)
+b5 = tf.Variable(tf.random_normal([2]))
 hypothesis = tf.matmul(dropout4, W5)+b5
 
 # define cost/loss & optimizer
@@ -101,7 +101,7 @@ for epoch in range(training_epochs):
         c, _ = sess.run([cost, optimizer], feed_dict=feed_dict)
         avg_cost += c / total_batch
 
-    print('Epoch:', '{:04d}'.format(epoch +1), 'cost =', '{:.9f}'.format(avg_cost))
+    print('Epoch:', '{:04d}'.format(epoch + 1), 'cost =', '{:.9f}'.format(avg_cost))
 
 end = time()
 print('Training Finished')

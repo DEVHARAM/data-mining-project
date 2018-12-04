@@ -8,15 +8,15 @@ def convert_index(path1,path2,p):
 	head = []
 	count = []
 	read = ""
-	with open(path1, 'r') as f:
+	with open(path1, 'r', encoding='utf8') as f:
 		read = f.read()
 		for d in delete:
 			read = read.replace(d, '')
 
-	with open(path2, 'w') as f:
+	with open(path2, 'w', encoding='utf8') as f:
 		f.write(read)
 
-	with open(path2, 'r') as f:
+	with open(path2, 'r', encoding='utf8') as f:
 		for read in iter(lambda: f.readline(), ''):
 			for word in read:
 				if word is '\n':

@@ -15,20 +15,21 @@ k is length of a feature
 """
 import numpy as np
 
+
 def matrix(path, features, k):
 	num_lines = 0
 
-#count line
-	with open(path, 'r') as f:
+	# count line
+	with open(path, 'r', encoding='utf8') as f:
 		for line in f:
 			num_lines += 1
 
 	array = np.zeros([num_lines, len(features)], dtype='i')
-	count=0
-	with open(path, 'r') as file_in:
+	count = 0
+	with open(path, 'r', encoding='utf8') as file_in:
 		for read in iter(lambda: file_in.readline(), ''):
 			for num in range(1, int(len(read)/k)):
-				feature=read[num:num+k]
+				feature = read[num:num+k]
 				try:
 					array[count][features.index(feature)]+=1
 				except Exception:
@@ -41,9 +42,10 @@ def matrix(path, features, k):
 
 	return array
 
+
 def parsing(path, k):
 	features=[]
-	with open(path, 'r') as file_in:
+	with open(path, 'r', encoding='utf8') as file_in:
 		for read in iter(lambda: file_in.readline(), ''):
 			for num in range(1, int(len(read)/k)):
 				feature = read[num:num+k]

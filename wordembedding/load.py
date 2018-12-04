@@ -8,7 +8,7 @@ twitter = Twitter()
 
 
 def summary(x_train, y_train, x_test, y_test, name):
-	filename="saved_model/"+name+".sav"
+	filename = "saved_model/"+name+".sav"
 	model = pickle.load(open(filename, 'rb'))
 
 	data = {"Name": name}
@@ -41,7 +41,7 @@ def tokenizer_twitter_pos(doc):
 
 comments = []
 ## Load Comment
-with open("public/first.txt", "r") as f:
+with open("public/third.txt", "r") as f:
 	for line in iter(lambda: f.readline(), ''):
 		score = line[0]
 		line = line[1:].replace("\n", "")

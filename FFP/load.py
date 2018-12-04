@@ -2,6 +2,7 @@ import pickle
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import classification_report,confusion_matrix
 from sklearn.svm import SVC
+import matplotlib.pyplot as plt
 import sys
 sys.path.append('module')
 import ffp

@@ -22,7 +22,7 @@ def spell(sen):
     result_text=re.sub(r'<\/?.*?>','',result_text)
     return result_text
 if __name__=='__main__':
-    f=open('test.txt','r')
+    f=open('simple.txt','r')
     fw=open('result.txt','w')
     lines=f.readlines()
     for line in lines:

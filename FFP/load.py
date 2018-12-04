@@ -26,4 +26,4 @@ def load(train_path, test_path, k):
 	return accuracy_score(test_label, pred)
 
 
-load("public/train.txt","public/test.txt",2)
+load("public/train.txt", "public/test.txt", 2)

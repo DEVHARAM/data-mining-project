@@ -10,7 +10,7 @@ from sklearn.linear_model import SGDClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score,classification_report,confusion_matrix
-from sklearn.feature_extraction.text import TfidfVectorizer, HashingVectorizer, CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer, HashingVectorizer,CountVectorizer
 import nltk
 from time import time
 import pickle
@@ -99,7 +99,7 @@ emoticons = ["!","@","#","$","%","^","&","*","(",")","-","=","_","+","~",",","."
 
 comments=[]
 
-with open("simple.txt","r") as In:
+with open("result.txt","r") as In:
 	 with open("public/first.txt","w") as Out:
 		  read = In.read()
 		  for emoticon in emoticons:

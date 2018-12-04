@@ -99,7 +99,7 @@ emoticons = ["!","@","#","$","%","^","&","*","(",")","-","=","_","+","~",",","."
 
 comments=[]
 
-with open("result.txt","r") as In:
+with open("simple.txt","r") as In:
 	 with open("public/first.txt","w") as Out:
 		  read = In.read()
 		  for emoticon in emoticons:

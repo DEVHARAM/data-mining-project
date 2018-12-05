@@ -26,10 +26,9 @@ def spell(sen):
 
 if __name__ == '__main__':
     f = open('simple.txt', 'r', encoding='utf8')
-    # 파이참 환경에서 밑에 출력파일이 이상하게 나오므로
-    # 다른 환경에서 실행 시켜서 나온 출력 파일인 result.txt로 나머지를 실행할 것이다.
-    fw = open('do_not_use_this_result.txt', 'w', encoding='utf8')
+    fw = open('result.txt', 'w', encoding='utf8')
     lines = f.readlines()
     for line in lines:
         transfer = spell(line)
-        fw.write(transfer)
+        print(transfer)
+        fw.write(transfer+'\n')

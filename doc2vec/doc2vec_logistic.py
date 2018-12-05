@@ -37,5 +37,5 @@ end = time()
 print('Time: {:f}s'.format(end-start))
 
 y_pred = clf.score(X_test, y_test)
-print("====Doc2Vec, Logistic Regression====")
+print("====Logistic Regression====")
 print("테스트 정확도: {:.2f}%".format(y_pred*100))

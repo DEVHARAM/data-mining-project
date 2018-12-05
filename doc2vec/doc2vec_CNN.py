@@ -41,18 +41,18 @@ y_test_np = np.eye(2)[y_test_np.reshape(-1)]
 xavier_init = tf.contrib.layers.xavier_initializer()
 
 # hyper parameters
-learning_rate = 0.01
-training_epochs = 30
-batch_size = 10
+learning_rate = 0.001
+training_epochs = 50
+batch_size = 25
 keep_prob = 0.7
 
 # Input Layer
-X = tf.placeholder(tf.float32, [None, 10])
+X = tf.placeholder(tf.float32, [None, 50])
 Y = tf.placeholder(tf.float32, [None, 2])
 train_mode = tf.placeholder(tf.bool, name='train_mode')
 
 # Layer output size
-hidden_output_size = 10
+hidden_output_size = 50
 final_output_size = 2
 
 bn_params = {
@@ -116,5 +116,6 @@ with arg_scope(
     correct_prediction = tf.equal(tf.argmax(hypothesis, 1), tf.argmax(Y, 1))
     accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
+    print("====Convolutional Neural Network====")
     print("테스트 정확도: {:.2f}%".format((sess.run(accuracy,
                                               feed_dict={X: X_test_np, Y: y_test_np, train_mode: False})) * 100))

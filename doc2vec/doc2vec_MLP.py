@@ -32,8 +32,7 @@ mlp_clf = MLPClassifier(
     hidden_layer_sizes=(50,),
     max_iter=10,
     alpha=1e-4,
-    solver='sgd',
-    verbose=10,
+    verbose=15,
     tol=1e-4,
     random_state=1,
     learning_rate_init=.1
@@ -44,4 +43,5 @@ end = time()
 print('Time: {:f}s'.format(end-start))
 
 y_pred = mlp_clf.score(X_test, y_test)
+print("====Multilayer Perceptron by sklearn====")
 print("테스트 정확도: {:.2f}".format(y_pred*100))

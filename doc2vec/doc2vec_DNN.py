@@ -45,17 +45,17 @@ tf.reset_default_graph()
 # hyper Parameter
 learning_rate = 0.001
 training_epochs = 50
-batch_size = 10
+batch_size = 9
 
 # input layer
-X = tf.placeholder(tf.float32, [None, 20])
+X = tf.placeholder(tf.float32, [None, 50])
 Y = tf.placeholder(tf.float32, [None, 2])
 
 # dropout
 keep_prob = tf.placeholder(tf.float32)
 
 # Hidden layers and Output layer
-W1 = tf.get_variable("W1", shape=[20, 32], initializer=xavier_init)
+W1 = tf.get_variable("W1", shape=[50, 32], initializer=xavier_init)
 b1 = tf.Variable(tf.random_normal([32]))
 L1 = tf.nn.relu(tf.matmul(X, W1)+b1)
 dropout1 = tf.nn.dropout(L1, keep_prob=keep_prob)
@@ -110,6 +110,6 @@ print('Time: {:f}s'.format(end-start))
 # Test Model and check Accuracy
 correct_prediction = tf.equal(tf.argmax(hypothesis, 1), tf.argmax(Y, 1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-print('테스트 정확도: ', )
+print("====Deep Neural Network====")
 print("테스트 정확도: {:.2f}%".format((sess.run(accuracy,
                                           feed_dict={X: X_test_np, Y: y_test_np, keep_prob: 1})) * 100))

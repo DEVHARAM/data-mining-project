@@ -38,12 +38,12 @@ with open("public/third.txt", "r", encoding='UTF8') as f:
             comments.append(comment)
 
 df_train = pd.DataFrame({
-    "score": [d["score"] for d in comments[150:]],
-    "text": [d["text"] for d in comments[150:]],
+    "score": [d["score"] for d in comments[350:]],
+    "text": [d["text"] for d in comments[350:]],
 })
 df_test = pd.DataFrame({
-    "X_test": [d["text"] for d in comments[:150]],
-    "y_test": [d["score"] for d in comments[:150]],
+    "X_test": [d["text"] for d in comments[:350]],
+    "y_test": [d["score"] for d in comments[:350]],
 })
 df_train['token_review'] = df_train['text'].apply(tokenizer_morphs)
 df_test['X_test_tokkended'] = df_test['X_test'].apply(tokenizer_morphs)
@@ -62,7 +62,7 @@ print(len(tagged_test_docs), len(tagged_train_docs))
 
 doc_vectorizer = Doc2Vec(
     window=8,        # distance between the predicted word and context words
-    vector_size=20,  # vector size
+    vector_size=50,  # vector size
     alpha=0.025,     # learning-rate
     min_count=1,    # ignore with freq lower
     min_alpha=0.00025, # min learning-rate

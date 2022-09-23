@@ -54,7 +54,7 @@ pandas==0.23.4
 pbr==5.1.1
 pexpect==4.2.1
 Pillow==5.1.0
-protobuf==3.6.1
+protobuf==3.18.3
 pycairo==1.16.2
 pycrypto==2.6.1
 pycups==1.9.73
